@@ -1057,9 +1057,7 @@ export default function App() {
                 <p className="text-zinc-800 dark:text-zinc-300 font-normal">Medical Illustration Portfolio</p>
                 <p className="mt-1 text-[11px] text-zinc-500 dark:text-zinc-400 leading-normal">
                   University of Cincinnati College of Medicine, '27
-                </p>
-                <p className="mt-1 text-[11px] text-zinc-500 dark:text-zinc-400 leading-normal">test</p>
-              </div>
+                </p>              </div>
             </div>
 
             {/* Navigation links - Preserved and toggled by SHOW_NAV_ITEMS */}
