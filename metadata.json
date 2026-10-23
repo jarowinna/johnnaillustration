@@ -1,0 +1,6 @@
+{
+  "name": "John Na Portfolio",
+  "description": "Minimalist medical illustrator portfolio for John Na, Medical Student at University of Cincinnati College of Medicine",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

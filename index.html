@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en" class="dark" style="background-color: #121214;">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#121214" id="theme-color-meta" />
+    <script>
+      (function() {
+        try {
+          // Domain Redirect & Canonical Enforcer
+          var host = window.location.hostname.toLowerCase();
+          var isDevOrPreview = host === 'localhost' || host === '127.0.0.1' || host.indexOf('ais-dev-') !== -1 || host.indexOf('ais-pre-') !== -1;
+          
+          if (!isDevOrPreview && (host.endsWith('.ai.studio') || host === 'john-na-illustration.ai.studio' || host === 'www.johnnaillustration.com')) {
+            var targetUrl = 'https://johnnaillustration.com' + window.location.pathname + window.location.search + window.location.hash;
+            window.location.replace(targetUrl);
+          }
+
+          // Dynamic Robots Tag: noindex for .ai.studio and Cloud Run preview domains
+          if (host.endsWith('.ai.studio') || host.indexOf('.run.app') !== -1) {
+            var robotsMeta = document.createElement('meta');
+            robotsMeta.name = 'robots';
+            robotsMeta.content = 'noindex, nofollow';
+            document.head.appendChild(robotsMeta);
+          }
+
+          // Theme Initializer
+          var mode = localStorage.getItem('john_na_theme_mode') || localStorage.getItem('john_na_theme');
+          var theme = mode;
+          if (!theme || (theme !== 'dark' && theme !== 'light')) {
+            var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+            var hour = new Date().getHours();
+            var isNight = hour >= 19 || hour < 7;
+            if (prefersDark && !prefersLight) {
+              theme = 'dark';
+            } else if (prefersLight && !prefersDark && !isNight) {
+              theme = 'light';
+            } else {
+              theme = isNight ? 'dark' : 'light';
+            }
+          }
+          var bgColor = theme === 'dark' ? '#121214' : '#fafafa';
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+          document.documentElement.style.backgroundColor = bgColor;
+          var meta = document.getElementById('theme-color-meta');
+          if (meta) meta.setAttribute('content', bgColor);
+        } catch (e) {}
+      })();
+    </script>
+    <title>John Na — Medical Illustration</title>
+    <link rel="canonical" href="https://johnnaillustration.com/" />
+    <meta name="description" content="Minimalist medical illustrator portfolio for John Na, Medical Student at University of Cincinnati College of Medicine" />
+    <meta property="og:site_name" content="John Na — Medical Illustration" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://johnnaillustration.com/" />
+    <meta property="og:title" content="John Na — Medical Illustration" />
+    <meta property="og:description" content="Minimalist medical illustrator portfolio for John Na, Medical Student at University of Cincinnati College of Medicine" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="John Na — Medical Illustration" />
+    <meta name="twitter:description" content="Minimalist medical illustrator portfolio for John Na, Medical Student at University of Cincinnati College of Medicine" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "John Na",
+      "jobTitle": "Medical Illustrator & Medical Student",
+      "worksFor": {
+        "@type": "EducationalOrganization",
+        "name": "University of Cincinnati College of Medicine"
+      },
+      "url": "https://johnnaillustration.com"
+    }
+    </script>
+  </head>
+  <body style="background-color: #121214;">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
