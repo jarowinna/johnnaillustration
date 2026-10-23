@@ -1058,6 +1058,7 @@ export default function App() {
                 <p className="mt-1 text-[11px] text-zinc-500 dark:text-zinc-400 leading-normal">
                   University of Cincinnati College of Medicine, '27
                 </p>
+                <p className="mt-1 text-[11px] text-zinc-500 dark:text-zinc-400 leading-normal">test</p>
               </div>
             </div>
 
